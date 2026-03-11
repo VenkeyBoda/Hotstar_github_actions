@@ -4,11 +4,11 @@ on:
   push:
     branches: [ "main" ]
 
-    # paths:
-    #   - 'src/**'
-    #   - 'public/**'
-    #   - 'Dockerfile'
-    #   # - '.github/workflows/**'
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'Dockerfile'
+      # - '.github/workflows/**'
 
 jobs:
 

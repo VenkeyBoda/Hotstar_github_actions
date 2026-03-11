@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Hotstar-app
+  name: hotstar-app
   labels:
-    app: Hotstar-app
+    app: hotstar-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: Hotstar-app
+      app: hotstar-app
   template:
     metadata:
       labels:
-        app: Hotstar-app
+        app: hotstar-app
     spec:
       containers:
-      - name: Hotstar-app
+      - name: hotstar-app
         image: venkeyboda/hotstar-app:latest
         resources: 
           limits:

@@ -99,7 +99,7 @@ jobs:
             kubectl get nodes
 
       - name: Deploy manifests
-        working-directory: kubernetes
+        working-directory: Kubernetes
         run: kubectl apply -f .
           
       - name: Wait for LoadBalancer

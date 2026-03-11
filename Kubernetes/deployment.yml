@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Hotstar-app
+  labels:
+    app: Hotstar-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: Hotstar-app
+  template:
+    metadata:
+      labels:
+        app: Hotstar-app
+    spec:
+      containers:
+      - name: Hotstar-app
+        image: venkeyboda/hotstar-app:latest
+        resources: 
+          limits:
+            cpu: 500m
+            memory: 256M
+          requests:
+            cpu: 100m
+            memory: 64M
+        livenessProbe: 
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 60
+          periodSeconds: 10
+        readinessProbe: 
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 60
+          periodSeconds: 10            
+        ports:
+        - containerPort: 3000

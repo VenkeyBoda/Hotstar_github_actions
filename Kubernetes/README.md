@@ -1,7 +1,7 @@
 
 ---
 
-# 📁 2️⃣ `k8s/README.md`
+# 📁 2️⃣ `Kubernetes/README.md`
 
 ```markdown
 # ☸ Kubernetes Manifests – Application Deployment
@@ -22,7 +22,7 @@ This folder contains Kubernetes YAML files to deploy the application into AKS.
 Make sure kubectl is configured:
 
 ```bash
-kubectl apply -f k8s/
+kubectl apply -f Kubernetes/
 
 
 Verify:

@@ -89,8 +89,30 @@ jobs:
             --resource-group ${{ vars.RG_NAME }} \
             --name ${{ vars.AKS_NAME }} \
             --created
-            
+
       - name: Verify cluster
         run: |
             kubectl cluster-info
             kubectl get nodes
+
+      - name: Deploy manifests
+        run: kubectl apply -f Kubernetes/
+          
+      - name: Wait for LoadBalancer
+        run: |
+          kubectl wait \
+          --for=jsonpath='{.status.loadBalancer.ingress[0].ip}' \
+          service/app-service \
+           --timeout=600s
+          
+      - name: Get service URL
+        run: |
+          kubectl get svc
+      
+      - name: Print URL
+        run: |
+          IP=$(kubectl get svc app-service \
+          -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+        
+          echo "Application URL:"
+          echo "http://$IP"    

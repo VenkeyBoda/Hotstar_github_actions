@@ -8,8 +8,6 @@ on:
       - 'src/**'
       - 'public/**'
       - 'Dockerfile'
-      - 'Infra/**'
-      - 'K8S/**'
       - '.github/workflows/**'
 
 jobs:

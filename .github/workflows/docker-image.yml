@@ -4,11 +4,11 @@ on:
   push:
     branches: [ "main" ]
 
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'Dockerfile'
-      # - '.github/workflows/**'
+    # paths:
+    #   - 'src/**'
+    #   - 'public/**'
+    #   - 'Dockerfile'
+    #   # - '.github/workflows/**'
 
 jobs:
 
@@ -19,7 +19,7 @@ jobs:
   build:
 
     # Run only if app changes
-    if: contains(github.event.head_commit.modified, 'Dockerfile') || contains(github.event.head_commit.added, 'Dockerfile')
+    # if: contains(github.event.head_commit.modified, 'Dockerfile') || contains(github.event.head_commit.added, 'Dockerfile')
 
     runs-on: ubuntu-latest
 

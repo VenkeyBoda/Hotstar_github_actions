@@ -106,16 +106,16 @@ jobs:
         run: |
           kubectl wait \
           --for=jsonpath='{.status.loadBalancer.ingress[0].ip}' \
-          service \
+          service/hotstar-app  \
            --timeout=600s
           
       - name: Get service URL
         run: |
-          kubectl get svc
+          kubectl get svc hotstar-app 
       
       - name: Print URL
         run: |
-          IP=$(kubectl get svc \
+          IP=$(kubectl get svc/hotstar-app  \
           -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
         
           echo "Application URL:"

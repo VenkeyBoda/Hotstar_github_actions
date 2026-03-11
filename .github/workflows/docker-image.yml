@@ -73,12 +73,24 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
 
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4  
+
       - name: Get AKS credentials
         run: |
           az aks get-credentials \
           --resource-group ${{ vars.RG_NAME }} \
           --name ${{ vars.AKS_NAME }} \
           --overwrite-existing  
+
+      - name: Wait cluster ready
+        run: |
+            az aks wait \
+            --resource-group ${{ vars.RG_NAME }} \
+            --name ${{ vars.AKS_NAME }} \
+            --created
             
-      - name: Check nodes
-        run: kubectl get nodes
+      - name: Verify cluster
+        run: |
+            kubectl cluster-info
+            kubectl get nodes

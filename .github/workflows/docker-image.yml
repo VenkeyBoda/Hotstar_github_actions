@@ -3,25 +3,43 @@ name: Docker Image build and push CI
 on:
   push:
     branches: [ "main" ]
-
-    paths:
-      - 'public/**'
-      - 'src/**'
-      - 'Dockerfile'
   
   workflow_dispatch:      
 
 jobs:
+
+  changes:
+
+    runs-on: ubuntu-latest
+    outputs:
+      run_ci: ${{ steps.filter.outputs.ci }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+  
+      - name: Filter changes
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            ci:
+              - 'public/**'
+              - 'src/**'
+              - 'Dockerfile'  
 
 # =========================
 # CI JOB
 # =========================
 
   build:
-
+    needs: changes
+    if: needs.changes.outputs.run_ci == 'true'
+    
     runs-on: ubuntu-latest
 
     steps:
+
       - name: checkout  
         uses: actions/checkout@v4
 

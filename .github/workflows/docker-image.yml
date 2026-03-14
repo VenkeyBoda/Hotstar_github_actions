@@ -120,3 +120,5 @@ jobs:
         
           echo "Application URL:"
           echo "http://$IP"    
+
+          

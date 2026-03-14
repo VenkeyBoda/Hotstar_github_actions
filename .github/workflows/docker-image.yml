@@ -3,10 +3,13 @@ name: Docker Image build and push CI
 on:
   push:
     branches: [ "main" ]
+
     paths:
       - 'public/**'
       - 'src/**'
       - 'Dockerfile'
+  
+  workflow_dispatch:      
 
 jobs:
 
@@ -122,4 +125,4 @@ jobs:
           echo "http://$IP" 
           
 
-          
+

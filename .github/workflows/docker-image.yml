@@ -119,6 +119,5 @@ jobs:
           -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
         
           echo "Application URL:"
-          echo "http://$IP"    
-
+          echo "http://$IP" 
           
